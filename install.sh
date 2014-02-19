@@ -10,6 +10,8 @@ PL_RELEASE="puppetlabs-release-precise.deb"
 PL_RELEASE_URL="http://apt.puppetlabs.com/$PL_RELEASE"
 RMQ_KEY_URL="http://www.rabbitmq.com/rabbitmq-signing-key-public.asc"
 ANCOR_PUPPET_URL="https://github.com/arguslab/ancor-puppet.git"
+PUPPET_VERSION="3.4.2-1puppetlabs1"
+MCO_VERSION="2.4.1-1puppetlabs1"
 
 cp hosts /etc/hosts
 
@@ -25,11 +27,14 @@ rm $PL_RELEASE
 set -x
 
 apt-get update
-apt-get install -y -q puppet=3.4.2-1puppetlabs1 \
-    puppetmaster=3.4.2-1puppetlabs1 \
+apt-get install -y -q puppet=$PUPPET_VERSION \
+    puppet-common=$PUPPET_VERSION \
+    puppetmaster=$PUPPET_VERSION \
+    puppetmaster-common=$PUPPET_VERSION \
     puppet-dashboard \
-    mcollective=2.4.1-1puppetlabs1 \
-    mcollective-client=2.4.1-1puppetlabs1 \
+    mcollective=$MCO_VERSION \
+    mcollective-client=$MCO_VERSION \
+    mcollective-common=$MCO_VERSION \
     ruby-stomp rabbitmq-server git mysql-server htop curl vim \
     mongodb-server redis-server
 
