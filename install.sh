@@ -30,7 +30,8 @@ apt-get install -y -q puppet=3.4.2-1puppetlabs1 \
     puppet-dashboard \
     mcollective=2.4.1-1puppetlabs1 \
     mcollective-client=2.4.1-1puppetlabs1 \
-    ruby-stomp rabbitmq-server git mysql-server
+    ruby-stomp rabbitmq-server git mysql-server htop curl vim \
+    mongodb-server redis-server
 
 # Stop and disable the puppetmaster service, use apache2 + passenger instead
 service puppetmaster stop
