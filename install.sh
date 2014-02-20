@@ -4,8 +4,6 @@ set -e
 export DEBIAN_FRONTEND=noninteractive
 
 WORKING_PATH=$PWD
-HOST_NAME=$HOSTNAME
-FQDN="cybersec.cis.ksu.edu"
 
 PL_RELEASE="puppetlabs-release-precise.deb"
 PL_RELEASE_URL="http://apt.puppetlabs.com/$PL_RELEASE"
@@ -13,8 +11,9 @@ RMQ_KEY_URL="http://www.rabbitmq.com/rabbitmq-signing-key-public.asc"
 ANCOR_PUPPET_URL="https://github.com/arguslab/ancor-puppet.git"
 PUPPET_VERSION="3.4.2-1puppetlabs1"
 MCO_VERSION="2.4.1-1puppetlabs1"
+RACK_PATH=/usr/share/puppet/rack
 
-sed "s/host-name/$HOST_NAME/" hosts > /etc/hosts
+echo "127.0.1.1 `hostname` puppet" >> /etc/hosts
 
 ## Install basic tools
 apt-get update
@@ -49,6 +48,10 @@ service puppetmaster stop
 service puppet-dashboard stop
 update-rc.d -f puppetmaster remove
 update-rc.d -f puppet-dashboard remove
+
+# Regenerate CA certificate
+rm -rf /var/lib/puppet/ssl
+puppet cert --generate puppet
 
 ## Enable some required and optional RabbitMQ plugins
 rabbitmq-plugins enable rabbitmq_stomp rabbitmq_management rabbitmq_tracing rabbitmq_federation_management
@@ -103,14 +106,12 @@ service puppet-dashboard-workers restart
 # Setup Puppet to use Passenger
 a2enmod ssl headers
 
-RACK_PATH=/usr/share/puppet/rack
-
 mkdir -p $RACK_PATH/public $RACK_PATH/tmp
 cp /usr/share/puppet/ext/rack/config.ru $RACK_PATH
 chown puppet:puppet $RACK_PATH/config.ru
 
 ## TODO In httpd 2.4 and later, this file should end in ".conf"
-sed "s/host-name.FQDN/$HOSTNAME.$FQDN/" vhost-puppetmaster.conf > /etc/apache2/sites-available/puppetmaster
+cp vhost-puppetmaster.conf /etc/apache2/sites-available/puppetmaster
 cp vhost-puppet-dashboard.conf /etc/apache2/sites-available/puppet-dashboard
 a2ensite puppetmaster puppet-dashboard
 service apache2 restart
