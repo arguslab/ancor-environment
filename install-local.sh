@@ -1,5 +1,7 @@
 #!/bin/bash
-WORKSPACE_PATH="~/workspace"
+
+mkdir ~/workspace
+cd ~/workspace
 
 ## Download and run RVM
 curl -L https://get.rvm.io | bash -s stable
@@ -13,6 +15,6 @@ rvm use --default ruby-1.9.3
 
 gem install bundler
 
-git clone git@github.com:arguslab/ancor.git $WORKSPACE_PATH/ancor
-cd $WORKSPACE_PATH/ancor
+git clone git@github.com:arguslab/ancor.git
+cd ancor
 bundle install
