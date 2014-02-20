@@ -5,6 +5,8 @@ export http_proxy="http://172.17.0.6:3128"
 export DEBIAN_FRONTEND=noninteractive
 
 WORKING_PATH=$PWD
+HOST_NAME=$HOSTNAME
+FQDN="cybersec.cis.ksu.edu"
 
 PL_RELEASE="puppetlabs-release-precise.deb"
 PL_RELEASE_URL="http://apt.puppetlabs.com/$PL_RELEASE"
@@ -13,7 +15,7 @@ ANCOR_PUPPET_URL="https://github.com/arguslab/ancor-puppet.git"
 PUPPET_VERSION="3.4.2-1puppetlabs1"
 MCO_VERSION="2.4.1-1puppetlabs1"
 
-cp hosts /etc/hosts
+sed "s/host-name/$HOST_NAME/" hosts > /etc/hosts
 
 ## Install basic tools
 apt-get update
@@ -109,7 +111,7 @@ cp /usr/share/puppet/ext/rack/config.ru $RACK_PATH
 chown puppet:puppet $RACK_PATH/config.ru
 
 ## TODO In httpd 2.4 and later, this file should end in ".conf"
-cp vhost-puppetmaster.conf /etc/apache2/sites-available/puppetmaster
+sed "s/host-name.FQDN/$HOSTNAME.$FQDN/" vhost-puppetmaster.conf > /etc/apache2/sites-available/puppetmaster/vhost-puppetmaster.conf
 cp vhost-puppet-dashboard.conf /etc/apache2/sites-available/puppet-dashboard
 a2ensite puppetmaster puppet-dashboard
 service apache2 restart
