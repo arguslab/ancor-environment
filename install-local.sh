@@ -18,3 +18,4 @@ gem install bundler
 git clone git@github.com:arguslab/ancor.git
 cd ancor
 bundle install
+./bin/setup-mcollective

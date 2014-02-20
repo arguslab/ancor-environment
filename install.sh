@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-export http_proxy="http://172.17.0.6:3128"
 export DEBIAN_FRONTEND=noninteractive
 
 WORKING_PATH=$PWD
