@@ -111,7 +111,7 @@ cp /usr/share/puppet/ext/rack/config.ru $RACK_PATH
 chown puppet:puppet $RACK_PATH/config.ru
 
 ## TODO In httpd 2.4 and later, this file should end in ".conf"
-sed "s/host-name.FQDN/$HOSTNAME.$FQDN/" vhost-puppetmaster.conf > /etc/apache2/sites-available/puppetmaster/vhost-puppetmaster.conf
+sed "s/host-name.FQDN/$HOSTNAME.$FQDN/" vhost-puppetmaster.conf > /etc/apache2/sites-available/puppetmaster
 cp vhost-puppet-dashboard.conf /etc/apache2/sites-available/puppet-dashboard
 a2ensite puppetmaster puppet-dashboard
 service apache2 restart
