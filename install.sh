@@ -15,6 +15,10 @@ MCO_VERSION="2.4.1-1puppetlabs1"
 
 cp hosts /etc/hosts
 
+## Install basic tools
+apt-get update
+apt-get install -y -q curl git vim htop
+
 ## RabbitMQ repository
 echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list
 curl $RMQ_KEY_URL | apt-key add -
@@ -35,8 +39,9 @@ apt-get install -y -q puppet=$PUPPET_VERSION \
     mcollective=$MCO_VERSION \
     mcollective-client=$MCO_VERSION \
     mcollective-common=$MCO_VERSION \
-    ruby-stomp rabbitmq-server git mysql-server htop curl vim \
-    mongodb-server redis-server
+    ruby-stomp rabbitmq-server \
+    mysql-server mongodb-server redis-server \
+    mcollective-puppet-agent
 
 # Stop and disable the puppetmaster service, use apache2 + passenger instead
 service puppetmaster stop

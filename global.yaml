@@ -1,2 +1,4 @@
 classes:
   - apt
+
+proxy_url: "http://172.17.0.6:3128/"
