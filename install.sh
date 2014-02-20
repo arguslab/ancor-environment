@@ -74,11 +74,6 @@ cp mcollective/server.cfg /etc/mcollective/server.cfg
 
 service mcollective restart
 
-# mco returns a non-zero exit code.. fine
-set +e
-mco ping
-set -e
-
 # Configure the Puppet master with Hiera and the ancor-puppet repository
 rm -r /etc/puppet
 git clone $ANCOR_PUPPET_URL /etc/puppet
@@ -117,3 +112,5 @@ a2ensite puppetmaster puppet-dashboard
 service apache2 restart
 
 puppet agent -t
+
+mco ping
