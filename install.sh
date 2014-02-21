@@ -31,11 +31,7 @@ rm $PL_RELEASE
 set -x
 
 apt-get update
-apt-get install -y -q puppet=$PUPPET_VERSION \
-    puppet-common=$PUPPET_VERSION \
-    puppetmaster=$PUPPET_VERSION \
-    puppetmaster-common=$PUPPET_VERSION \
-    puppet-dashboard \
+apt-get install -y -q puppet puppetmaster puppet-dashboard \
     mcollective=$MCO_VERSION \
     mcollective-client=$MCO_VERSION \
     mcollective-common=$MCO_VERSION \
@@ -43,7 +39,7 @@ apt-get install -y -q puppet=$PUPPET_VERSION \
     mysql-server mongodb-server redis-server \
     mcollective-puppet-agent
 
-apt-mark hold puppet puppetmaster mcollective
+apt-mark hold mcollective mcollective-client mcollective-common
 
 # Stop and disable the puppetmaster service, use apache2 + passenger instead
 service puppetmaster stop
