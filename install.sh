@@ -43,6 +43,8 @@ apt-get install -y -q puppet=$PUPPET_VERSION \
     mysql-server mongodb-server redis-server \
     mcollective-puppet-agent
 
+apt-mark hold puppet puppetmaster mcollective
+
 # Stop and disable the puppetmaster service, use apache2 + passenger instead
 service puppetmaster stop
 service puppet-dashboard stop
