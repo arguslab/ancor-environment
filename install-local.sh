@@ -18,4 +18,6 @@ gem install bundler
 git clone git@github.com:arguslab/ancor.git
 cd ancor
 bundle install
-bin/setup-mcollective
+
+echo 'Now setup the ANCOR configuration file using the example in "config/ancor.yml.example"'
+echo 'Afterwards run "bin/setup-mcollective"'
