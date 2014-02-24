@@ -21,3 +21,4 @@ bundle install
 
 echo 'Now setup the ANCOR configuration file using the example in "config/ancor.yml.example"'
 echo 'Afterwards run "bin/setup-mcollective"'
+echo 'In case of running the terminal in a GUI: "Run command as login shell" should be enabled'
