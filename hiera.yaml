@@ -15,4 +15,4 @@
   :output: json
   :failure: graceful
   :paths:
-    - "/hiera/%{clientcert}"
+    - "/v1/hiera/%{clientcert}"
