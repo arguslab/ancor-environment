@@ -37,7 +37,8 @@ apt-get install -y -q puppet puppetmaster puppet-dashboard \
     mcollective-common=$MCO_VERSION \
     ruby-stomp rabbitmq-server \
     mysql-server mongodb-server redis-server \
-    mcollective-puppet-agent
+    mcollective-puppet-agent \
+    graphviz
 
 apt-mark hold mcollective mcollective-client mcollective-common
 
@@ -69,6 +70,12 @@ rabbitmqadmin declare exchange -u mcollective -p marionette -V /mcollective name
 
 cp mcollective/client.cfg /etc/mcollective/client.cfg
 cp mcollective/server.cfg /etc/mcollective/server.cfg
+
+MCO_TMP=/tmp/mcollective-puppetca-agent
+MCO_PLUGINS=/usr/share/mcollective/plugins/mcollective
+git clone https://github.com/puppetlabs/mcollective-puppetca-agent $MCO_TMP
+cp -r $MCO_TMP/agent $MCO_PLUGINS
+cp -r $MCO_TMP/util $MCO_PLUGINS
 
 service mcollective restart
 
