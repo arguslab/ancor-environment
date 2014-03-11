@@ -38,7 +38,7 @@ apt-get install -y -q puppet puppetmaster puppet-dashboard \
     ruby-stomp rabbitmq-server \
     mysql-server mongodb-server redis-server \
     mcollective-puppet-agent \
-    graphviz
+    graphviz ntp
 
 apt-mark hold mcollective mcollective-client mcollective-common
 
