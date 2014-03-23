@@ -15,7 +15,7 @@ rvm use --default ruby-1.9.3
 
 gem install bundler
 
-git clone git@github.com:arguslab/ancor.git
+git clone https://github.com/arguslab/ancor.git
 cd ancor
 bundle install
 
