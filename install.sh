@@ -9,7 +9,6 @@ PL_RELEASE="puppetlabs-release-precise.deb"
 PL_RELEASE_URL="http://apt.puppetlabs.com/$PL_RELEASE"
 RMQ_KEY_URL="http://www.rabbitmq.com/rabbitmq-signing-key-public.asc"
 ANCOR_PUPPET_URL="https://github.com/arguslab/ancor-puppet.git"
-PUPPET_VERSION="3.4.2-1puppetlabs1"
 MCO_VERSION="2.4.1-1puppetlabs1"
 RACK_PATH=/usr/share/puppet/rack
 
@@ -21,10 +20,10 @@ apt-get install -y -q curl git vim htop
 
 ## RabbitMQ repository
 echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list
-curl $RMQ_KEY_URL | apt-key add -
+curl -s $RMQ_KEY_URL | apt-key add -
 
 ## Puppetlabs repository
-curl -O $PL_RELEASE_URL
+curl -s -O $PL_RELEASE_URL
 dpkg -i $PL_RELEASE
 rm $PL_RELEASE
 
@@ -57,7 +56,7 @@ rabbitmq-plugins enable rabbitmq_stomp rabbitmq_management rabbitmq_tracing rabb
 service rabbitmq-server restart
 
 ## Download the management CLI tool from the local RabbitMQ management server
-curl --no-proxy "" --retry 5 -O http://localhost:15672/cli/rabbitmqadmin
+curl --retry 5 -O http://localhost:15672/cli/rabbitmqadmin
 chmod +x rabbitmqadmin
 mv rabbitmqadmin /usr/local/bin
 
