@@ -19,6 +19,9 @@ mkdir -p $WORKSPACE_PATH && cd $WORKSPACE_PATH
 git clone https://github.com/arguslab/ancor.git $ANCOR_PATH
 cd $ANCOR_PATH && bundle install
 
+# Install ancor-cli
+gem install ancor-cli
+
 echo '=============================================================================================='
 echo 'Now setup the ANCOR configuration file using the example in "config/ancor.yml.example"'
 echo 'Afterwards run "bin/setup-mcollective"'
