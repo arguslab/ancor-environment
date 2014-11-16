@@ -3,6 +3,7 @@ WORKSPACE_PATH=$HOME/workspace
 ANCOR_PATH=$WORKSPACE_PATH/ancor
 
 ## Download and run RVM
+gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
 curl -L https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
 
