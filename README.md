@@ -11,8 +11,10 @@ Configures the following:
 + MySQL
 + RabbitMQ
 
+**Run in terminal**:
 ```
 git clone https://github.com/arguslab/ancor-environment.git && cd ancor-environment
 sudo ./install.sh
 ./install-local.sh
+exit
 ```
