@@ -85,7 +85,7 @@ git clone $ANCOR_PUPPET_URL /etc/puppet
 
 cp hiera.yaml /etc/hiera.yaml
 cp global.yaml /var/lib/hiera
-gem install hiera-http
+gem install hiera-http -v 1.4.0
 
 # Configure Puppet Dashboard
 Q1="CREATE DATABASE dashboard CHARACTER SET utf8;"
