@@ -16,7 +16,7 @@ echo "127.0.1.1 `hostname` puppet" >> /etc/hosts
 
 ## Install basic tools
 apt-get update
-apt-get install -y -q curl git vim htop
+apt-get install -y -q curl git htop
 
 ## RabbitMQ repository
 echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list
