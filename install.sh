@@ -72,7 +72,7 @@ cp mcollective/server.cfg /etc/mcollective/server.cfg
 
 MCO_TMP=/tmp/mcollective-puppetca-agent
 MCO_PLUGINS=/usr/share/mcollective/plugins/mcollective
-git clone https://github.com/ianunruh/mcollective-puppetca-agent $MCO_TMP
+git clone https://github.com/arguslab/mcollective-puppetca-agent.git $MCO_TMP
 cp -r $MCO_TMP/agent $MCO_PLUGINS
 cp -r $MCO_TMP/util $MCO_PLUGINS
 
